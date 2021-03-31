@@ -11,3 +11,52 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+// display none and display block for hover delete button
+body{
+    display:flex;
+    height:100vh;
+    align-items: center;
+    justify-content: center;
+}
+.listContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70vw;
+    border:2px solid black;
+}
+ul{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+}
+li{
+    
+    display:flex;
+    width: 100%;
+    min-height:5vh;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    
+}
+.deleteIcon{
+    display:none;
+    align-items: end;
+    justify-content: end;
+}
+li:hover{
+    
+    .deleteIcon{
+    display:inline-block;
+    align-items: end;
+    
+    justify-content: end;
+}
+}
+input{
+width:100%;
+}
