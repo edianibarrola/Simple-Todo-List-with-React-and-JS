@@ -19,6 +19,10 @@ export function Home() {
 			setInputValue("");
 		}
 	};
+	const removeFromList = index => {
+		let newList = myList.filter((item, i) => index != i);
+		setMyList(newList);
+	};
 	return (
 		<div>
 			<div className="listContainer">
@@ -38,7 +42,11 @@ export function Home() {
 					{myList.map((item, index) => (
 						<li key={index}>
 							{item.label}
-							<button className="deleteIcon">X</button>
+							<button
+								className="deleteIcon"
+								onClick={() => removeFromList(index)}>
+								X
+							</button>
 						</li>
 					))}
 					<li className="text-center">
