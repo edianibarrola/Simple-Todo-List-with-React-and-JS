@@ -1,15 +1,50 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+const baseUrl = "https://assets.breatheco.de/apis/fake/todos/user/edian";
 //create your first component
 export function Home() {
 	const [inputValue, setInputValue] = useState("");
 	const [myList, setMyList] = useState([]);
+
+	useEffect(() => {
+		syncData();
+	});
+	const syncData = () => {
+		fetch(baseUrl)
+			.then(response => {
+				if (!response.ok) throw new Error(response.statusText);
+
+				return response.json();
+			})
+			.then(data => {
+				setMyList(data);
+			})
+			.catch(error => console.log(error));
+	};
+
+	const updateData = data => {
+		fetch(baseUrl, {
+			method: "PUT",
+			body: JSON.stringify(data),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+			.then(response => {
+				if (!response.ok) throw new Error(response.statusText);
+
+				return response.json();
+			})
+			.then(data => {
+				syncData();
+			})
+			.catch(error => console.log(error));
+	};
 	const handleInputChange = input => {
 		setInputValue(input);
 	};
 	const addToList = e => {
 		if (e.key == "Enter" && inputValue != null) {
-			setMyList(
+			updateData(
 				myList.concat({
 					label: inputValue,
 					done: false
@@ -21,8 +56,11 @@ export function Home() {
 	};
 	const removeFromList = index => {
 		let newList = myList.filter((item, i) => index != i);
-		setMyList(newList);
+		updateData(newList);
 	};
+	// const setDoneStatus = e => {
+
+	// }
 	return (
 		<div>
 			<div className="listContainer">

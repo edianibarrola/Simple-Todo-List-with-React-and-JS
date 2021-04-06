@@ -24,7 +24,7 @@ body{
     align-items: center;
     justify-content: center;
     width: 70vw;
-    border:2px solid black;
+    border:2px solid red;
 }
 ul{
     display:flex;
@@ -41,6 +41,7 @@ li{
     align-items: center;
     justify-content: space-between;
     border-bottom: 2px solid black;
+    padding: 5px 10px 5px 10px;
     
 }
 .deleteIcon{
@@ -49,14 +50,14 @@ li{
     justify-content: end;
 }
 li:hover{
-    
+    background: gold;
     .deleteIcon{
     display:inline-block;
     align-items: end;
-    
+
     justify-content: end;
 }
 }
 input{
-width:100%;
+width:80%;
 }
